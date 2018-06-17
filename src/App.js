@@ -6,7 +6,9 @@ class App extends Component {
     super(props);
     this.state = {
       breakLength: 5,
-      sessionLength: 25
+      sessionLength: 25,
+      seconds: 60,
+      timerRunning: false
     };
     this.decrementBreak = this.decrementBreak.bind(this);
     this.incrementBreak = this.incrementBreak.bind(this);
@@ -56,7 +58,31 @@ class App extends Component {
   }
 
   toggleTimer() {
-    
+    let interval;
+
+    this.setState({
+      timerRunning: !this.state.timerRunning
+    }, () => {
+      if (this.state.timerRunning === true) {
+        interval = setInterval(() => {
+          this.setState({
+            seconds: this.state.seconds - 1
+          });
+
+          if (!this.state.timerRunning) {
+            clearInterval(interval);
+          }
+        }, 1000);
+      }
+    });
+  }
+
+  startTimer() {
+
+  }
+
+  pauseTimer() {
+
   }
 
   render() {
@@ -103,7 +129,7 @@ class App extends Component {
         <div className="session-timer">
           <div id="timer-label">Session</div>
           <div id="time-left">
-
+            {this.state.seconds}
           </div>
           <button 
             id="start_stop"
