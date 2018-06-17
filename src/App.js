@@ -12,6 +12,8 @@ class App extends Component {
     this.incrementBreak = this.incrementBreak.bind(this);
     this.decrementSession = this.decrementSession.bind(this);
     this.incrementSession = this.incrementSession.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
+    this.toggleTimer = this.toggleTimer.bind(this);
   }
 
   decrementBreak() {
@@ -39,9 +41,22 @@ class App extends Component {
   }
 
   incrementSession() {
+    if (this.state.sessionLength < 60) {
+      this.setState({
+        sessionLength: this.state.sessionLength + 1
+      });
+    }
+  }
+
+  resetTimer() {
     this.setState({
-      sessionLength: this.state.sessionLength + 1
+      sessionLength: 25,
+      breakLength: 5
     });
+  }
+
+  toggleTimer() {
+    
   }
 
   render() {
@@ -57,7 +72,7 @@ class App extends Component {
           >
             Down
           </button>
-          <div id="break-length">5</div>
+          <div id="break-length">{this.state.breakLength}</div>
           <button 
             id="break-increment"
             onClick={() => this.incrementBreak()} 
@@ -76,7 +91,7 @@ class App extends Component {
           >
             Down
           </button>
-          <div id="session-length">25</div>
+          <div id="session-length">{this.state.sessionLength}</div>
           <button 
             id="session-increment"
             onClick={() => this.incrementSession()} 
@@ -92,13 +107,13 @@ class App extends Component {
           </div>
           <button 
             id="start_stop"
-            onClick={() => this.handleClick()} 
+            onClick={() => this.toggleTimer()} 
           >
             Start/Stop
           </button>
           <button 
             id="reset"
-            onClick={() => this.handleClick()} 
+            onClick={() => this.resetTimer()} 
           >
             Reset
           </button>
