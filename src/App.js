@@ -7,8 +7,9 @@ class App extends Component {
     this.state = {
       breakLength: 5,
       sessionLength: 25,
-      seconds: 60,
-      timerRunning: false
+      seconds: 5,
+      timerRunning: false,
+      interval: null
     };
     this.decrementBreak = this.decrementBreak.bind(this);
     this.incrementBreak = this.incrementBreak.bind(this);
@@ -51,9 +52,13 @@ class App extends Component {
   }
 
   resetTimer() {
+    clearInterval(this.state.interval);
+
     this.setState({
       sessionLength: 25,
-      breakLength: 5
+      breakLength: 5,
+      seconds: 60,
+      timerRunning: !this.state.timerRunning
     });
   }
 
@@ -72,17 +77,20 @@ class App extends Component {
           if (!this.state.timerRunning) {
             clearInterval(interval);
           }
+
+          if (this.state.seconds === 0) {
+            this.setState({
+              sessionLength : this.state.sessionLength - 1,
+              seconds: 60
+            })
+          }
         }, 1000);
       }
+
+      this.setState({
+        interval
+      });
     });
-  }
-
-  startTimer() {
-
-  }
-
-  pauseTimer() {
-
   }
 
   render() {
