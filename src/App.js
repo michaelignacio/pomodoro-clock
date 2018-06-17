@@ -6,8 +6,8 @@ class App extends Component {
     super(props);
     this.state = {
       breakLength: 5,
-      sessionLength: 25,
-      seconds: 5,
+      sessionLength: 1,
+      seconds: 0,
       timerRunning: false,
       interval: null
     };
@@ -57,8 +57,8 @@ class App extends Component {
     this.setState({
       sessionLength: 25,
       breakLength: 5,
-      seconds: 60,
-      timerRunning: !this.state.timerRunning
+      seconds: 0,
+      timerRunning: false
     });
   }
 
@@ -70,19 +70,24 @@ class App extends Component {
     }, () => {
       if (this.state.timerRunning === true) {
         interval = setInterval(() => {
-          this.setState({
-            seconds: this.state.seconds - 1
-          });
-
-          if (!this.state.timerRunning) {
+          if (this.state.sessionLength === 0 &&
+              this.state.seconds === 1) {
             clearInterval(interval);
           }
 
           if (this.state.seconds === 0) {
             this.setState({
               sessionLength : this.state.sessionLength - 1,
-              seconds: 60
-            })
+              seconds: 3
+            });
+          }
+
+          this.setState({
+            seconds: this.state.seconds - 1
+          });
+
+          if (!this.state.timerRunning) {
+            clearInterval(interval);
           }
         }, 1000);
       }
@@ -137,7 +142,7 @@ class App extends Component {
         <div className="session-timer">
           <div id="timer-label">Session</div>
           <div id="time-left">
-            {this.state.seconds}
+            {this.state.sessionLength}:{this.state.seconds}
           </div>
           <button 
             id="start_stop"
