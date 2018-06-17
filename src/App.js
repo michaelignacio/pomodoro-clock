@@ -8,11 +8,40 @@ class App extends Component {
       breakLength: 5,
       sessionLength: 25
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.decrementBreak = this.decrementBreak.bind(this);
+    this.incrementBreak = this.incrementBreak.bind(this);
+    this.decrementSession = this.decrementSession.bind(this);
+    this.incrementSession = this.incrementSession.bind(this);
   }
 
-  handleClick() {
+  decrementBreak() {
+    if (this.state.breakLength > 0) {
+      this.setState({
+        breakLength: this.state.breakLength - 1
+      }
+      /*, () => {
+        console.log(this.state.breakLength);
+      }*/
+      );
+    }
+  }
 
+  incrementBreak() {
+    this.setState({
+      breakLength: this.state.breakLength + 1
+    });
+  }
+
+  decrementSession() {
+    this.setState({
+      sessionLength: this.state.sessionLength - 1
+    });
+  }
+
+  incrementSession() {
+    this.setState({
+      sessionLength: this.state.sessionLength + 1
+    });
   }
 
   render() {
@@ -24,14 +53,14 @@ class App extends Component {
           </div>
           <button 
             id="break-decrement"
-            onClick={() => this.handleClick()} 
+            onClick={() => this.decrementBreak()} 
           >
             Down
           </button>
           <div id="break-length">5</div>
           <button 
             id="break-increment"
-            onClick={() => this.handleClick()} 
+            onClick={() => this.incrementBreak()} 
           >
             Up
           </button>
@@ -43,14 +72,14 @@ class App extends Component {
           </div>
           <button 
             id="session-decrement"
-            onClick={() => this.handleClick()} 
+            onClick={() => this.decrementSession()} 
           >
             Down
           </button>
           <div id="session-length">25</div>
           <button 
             id="session-increment"
-            onClick={() => this.handleClick()} 
+            onClick={() => this.incrementSession()} 
           >
             Up
           </button>
