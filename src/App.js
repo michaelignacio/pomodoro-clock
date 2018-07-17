@@ -5,11 +5,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      breakLength: 5,
+      // breakLength: 5,
+      breakLength: 1,
+      // sessionLength: 25,
       sessionLength: 1,
       seconds: 0,
       timerRunning: false,
-      interval: null
+      interval: null,
+      onBreak: false,
+      onSession: false,
+      remainingMinutes: 0,
     };
     this.decrementBreak = this.decrementBreak.bind(this);
     this.incrementBreak = this.incrementBreak.bind(this);
@@ -81,6 +86,10 @@ class App extends Component {
           if (this.state.sessionLength === 0 &&
               this.state.seconds === 1) {
             clearInterval(interval);
+            this.setState({
+              onSession: false,
+              onBreak: true
+            });
           }
 
           if (this.state.seconds === 0) {
@@ -148,7 +157,7 @@ class App extends Component {
         </div>
 
         <div className="session-timer">
-          <div id="timer-label">Session</div>
+          <div id="timer-label">{this.state.onBreak ? 'We are on a break!' : 'We are NOT on a break!'}</div>
           <div id="time-left">
             {this.state.sessionLength < 10 ? '0' + this.state.sessionLength : this.state.sessionLength}:{this.state.seconds < 10 ? '0' + this.state.seconds : this.state.seconds}
           </div>
