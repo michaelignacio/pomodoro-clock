@@ -7,10 +7,10 @@
  ☐ User Story #26: When a countdown reaches zero (NOTE: timer MUST reach 00:00), a sound indicating that time is up should play. This should utilize an HTML5 audio tag and have a corresponding id="beep".
  ☐ User Story #27: The audio element with id="beep" must be 1 second or longer.
  ☐ User Story #28: The audio element with id of beep must stop playing and be rewound to the beginning when the element with the id of reset is clicked.
- ☐ Bug: Running timer should not change when session/break length buttons are clicked in the middle of a timer
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Bug: Running timer should not change when session/break length buttons are clicked in the middle of a timer @done (18-07-17 21:29)
  ✔ User Story #21: If the timer is paused and I click the element with id="start_stop", the countdown should resume running from the point at which it was paused. @done (18-07-17 21:02)
  ✔ User Story #20: If the timer is running and I click the element with id="start_stop", the countdown should pause. @done (18-07-17 21:02)
  ✔ User Story #18: When I first click the element with id="start_stop", the timer should begin running from the value currently displayed in id="session-length", even if the value has been incremented or decremented from the original value of 25. @done (18-07-17 21:01)

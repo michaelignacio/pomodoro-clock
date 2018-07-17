@@ -20,34 +20,42 @@ class App extends Component {
   }
 
   decrementBreak() {
-    if (this.state.breakLength > 0) {
-      this.setState({
-        breakLength: this.state.breakLength - 1
+    if (!this.state.timerRunning) {
+      if (this.state.breakLength > 0) {
+        this.setState({
+          breakLength: this.state.breakLength - 1
+        }
+        /*, () => {
+          console.log(this.state.breakLength);
+        }*/
+        );
       }
-      /*, () => {
-        console.log(this.state.breakLength);
-      }*/
-      );
     }
   }
 
   incrementBreak() {
-    this.setState({
-      breakLength: this.state.breakLength + 1
-    });
+    if (!this.state.timerRunning) {
+      this.setState({
+        breakLength: this.state.breakLength + 1
+      });
+    }
   }
 
   decrementSession() {
-    this.setState({
-      sessionLength: this.state.sessionLength - 1
-    });
+    if (!this.state.timerRunning) {
+      this.setState({
+        sessionLength: this.state.sessionLength - 1
+      });
+    }
   }
 
   incrementSession() {
-    if (this.state.sessionLength < 60) {
-      this.setState({
-        sessionLength: this.state.sessionLength + 1
-      });
+    if (!this.state.timerRunning) {
+      if (this.state.sessionLength < 60) {
+        this.setState({
+          sessionLength: this.state.sessionLength + 1
+        });
+      }
     }
   }
 
@@ -78,7 +86,7 @@ class App extends Component {
           if (this.state.seconds === 0) {
             this.setState({
               sessionLength : this.state.sessionLength - 1,
-              seconds: 3
+              seconds: 60
             });
           }
 
@@ -142,7 +150,7 @@ class App extends Component {
         <div className="session-timer">
           <div id="timer-label">Session</div>
           <div id="time-left">
-            {this.state.sessionLength}:{this.state.seconds}
+            {this.state.sessionLength < 10 ? '0' + this.state.sessionLength : this.state.sessionLength}:{this.state.seconds < 10 ? '0' + this.state.seconds : this.state.seconds}
           </div>
           <button 
             id="start_stop"
