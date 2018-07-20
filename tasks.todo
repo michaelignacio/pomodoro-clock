@@ -1,4 +1,5 @@
- ☐ User Story #22: When a session countdown reaches zero (NOTE: timer MUST reach 00:00), and a new countdown begins, the element with the id of timer-label should display a string indicating a break has begun. @started(18-07-18 00:38)
+ ☐ Conditional render break and session times https://reactjs.org/docs/conditional-rendering.html @critical
+ ☐ User Story #22: When a session countdown reaches zero (NOTE: timer MUST reach 00:00), and a new countdown begins, the element with the id of timer-label should display a string indicating a break has begun. @started(18-07-18 00:38) @toggle(18-07-18 02:43)
  ☐ User Story #23: When a session countdown reaches zero (NOTE: timer MUST reach 00:00), a new break countdown should begin, counting down from the value currently displayed in the id="break-length" element.
  ☐ User Story #24: When a break countdown reaches zero (NOTE: timer MUST reach 00:00), and a new countdown begins, the element with the id of timer-label should display a string indicating a session has begun.
  ☐ User Story #25: When a break countdown reaches zero (NOTE: timer MUST reach 00:00), a new session countdown should begin, counting down from the value currently displayed in the id="session-length" element.
@@ -8,6 +9,7 @@
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Bug: Separate session length concept from remaining minutes @critical @done (18-07-18 02:57)
  ✔ User Story #8: I can see an element with corresponding id="time-left". NOTE: Paused or running, the value in this field should always be displayed in mm:ss format (i.e. 25:00). @done (18-07-17 21:41)
  ✔ User Story #19: If the timer is running, the element with the id of time-left should display the remaining time in mm:ss format (decrementing by a value of 1 and updating the display every 1000ms). @done (18-07-17 21:41)
  ✔ Bug: Running timer should not change when session/break length buttons are clicked in the middle of a timer @done (18-07-17 21:29)
